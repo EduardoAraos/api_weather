@@ -1,6 +1,20 @@
 import requests, datetime, bisect, hashlib
 
 def api_call_openweathermap(city, country):
+    """Makes an api call to the third app openweathermap api
+
+    Parameters
+    ----------
+    city : Str
+        The speed of wind
+    country: Str
+        The
+
+    Returns
+    -------
+    Response object
+        The response of the openweathermap api called
+    """
     api_key_openweather = '21056e88589f13ccd2c21c8f9acbba8e'
     lang = 'en'
     units_system = 'metric'
@@ -15,6 +29,22 @@ def api_call_openweathermap(city, country):
     return response
 
 def api_weather_response(openweathermap_res):
+    """Creates the object response for api_weather api
+
+    Receives the deserialized response from the third app openweathermap api
+    and constructs the object that will be the response for the weather api
+
+    Parameters
+    ----------
+    openmapweathermap_res : dict
+        A deserialized json into a python dictionary object that 
+        contains the response from the get call at openweathermap api
+
+    Returns
+    -------
+    Response type object
+        The response of the openweathermap api called
+    """
     location_name = f"{openweathermap_res['name']}, {openweathermap_res['sys']['country']}"
     temperature_fahrenheit = f"{celsius_to_fahrenheit(openweathermap_res['main']['temp']):.2f} °F"
     temperature_celsius = f"{openweathermap_res['main']['temp']} °C"
@@ -42,13 +72,54 @@ def api_weather_response(openweathermap_res):
 
 
 def unix_time_to_datetime_format(utc_time, date_format):
+    """Takes a posix timestamp and a format in which it should be represented
+
+    Parameters
+    ----------
+    utc_time : num
+        A posix timestamp
+    date_format: str
+        A string that represents how the string format of a datetime object
+    Returns
+    -------
+    str
+        A human readable string of a date
+    """
     dt_utc_tz = datetime.datetime.fromtimestamp(utc_time, datetime.timezone.utc)
     return dt_utc_tz.strftime(date_format)
 
 def celsius_to_fahrenheit(celsius_degrees):
+    """Transform celsius unit degrees into fahrenheit unit degrees
+
+    Parameters
+    ----------
+    celsius_degrees : num
+        The amount of celsius degrees
+
+    Returns
+    -------
+    num
+        The equivalence in fahrenheit unit
+    """
+
     return (celsius_degrees *1.8) + 32
 
-def wind_description(wind_speed=5, wind_degrees=1):
+def wind_description(wind_speed , wind_degrees):
+    """Transform the numeric values of wind speed and wind degrees into a human readable description
+
+    Parameters
+    ----------
+    wind_speed : Num
+        The speed of wind
+    wind_degrees: Num
+        The degrees of wind
+
+    Returns
+    -------
+    str
+        a human readable description of the wind
+    """
+
     wind_beaufort_table = [
         (0, 0),
         (.5, 1),
@@ -125,6 +196,18 @@ def wind_description(wind_speed=5, wind_degrees=1):
     return ", ".join([wind_speed_description, str(wind_speed)+" m/s", wind_rose_description])
 
 def cloudiness_description(cloud_cover_percentage):
+    """Transform a cloud cover percentage into a human readable description
+
+    Parameters
+    ----------
+    cloud_cover_percentage : Num
+        The percentage of the sky that is cover by clouds
+
+    Returns
+    -------
+    num
+        A human readable description of hows the sky is cover by clouds
+    """
     cloudiness_okta_table = [
         (0, 0),
         (18.75, 1),
@@ -153,8 +236,27 @@ def cloudiness_description(cloud_cover_percentage):
     return cloudiness_okta_description[pos]
 
 def now_date_format():
+    """Returns the current datetime formatted into a human readable string
+
+    Returns
+    -------
+    str
+        The date of the moment the function is called (E.g. 2022-01-18 22:05:59)
+    """
     now_date = datetime.datetime.utcnow()
     return now_date.strftime("%Y-%d-%m %H:%M:%S")
 
 def key_cache_hash(key_prefix):
+    """Transforms a string into a md5 hash string representation
+
+    Parameters
+    ----------
+    key_prefix : str
+        A string
+
+    Returns
+    -------
+    str
+        A string hashed into a md5 value
+    """
     return hashlib.md5(key_prefix.encode('utf-8')).hexdigest()
