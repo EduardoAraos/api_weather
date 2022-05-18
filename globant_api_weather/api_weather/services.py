@@ -1,4 +1,4 @@
-import requests, datetime, bisect
+import requests, datetime, bisect, hashlib
 
 def api_call_openweathermap(city, country):
     api_key_openweather = '21056e88589f13ccd2c21c8f9acbba8e'
@@ -11,9 +11,8 @@ def api_call_openweathermap(city, country):
     params["units"] = units_system
     url_request = "http://api.openweathermap.org/data/2.5/weather"
     response = requests.get(url_request, params=params)
-    print(response)
     # .json() desearilizes json
-    return response.json()
+    return response
 
 def api_weather_response(openweathermap_res):
     location_name = f"{openweathermap_res['name']}, {openweathermap_res['sys']['country']}"
@@ -26,7 +25,6 @@ def api_weather_response(openweathermap_res):
     sunrise =  unix_time_to_datetime_format(openweathermap_res["sys"]["sunrise"], "%H:%M")
     sunset = unix_time_to_datetime_format(openweathermap_res["sys"]["sunset"], "%H:%M")
     geo_coordinates = f"[{openweathermap_res['coord']['lat']}, {openweathermap_res['coord']['lon']}]"
-    requested_time = "N/A"
     forecast =  "N/A"
     response_data = {
         "location_name": location_name,
@@ -39,7 +37,6 @@ def api_weather_response(openweathermap_res):
         "sunrise": sunrise,
         "sunset": sunset,
         "geo_coordinates": geo_coordinates,
-        "requested_time" : requested_time,
         "forecast": forecast}
     return response_data
 
@@ -125,7 +122,6 @@ def wind_description(wind_speed=5, wind_degrees=1):
     }
     wind_rose_direction =  wind_rose_list[(wind_degrees_truncated % 16)]
     wind_rose_description = wind_rose_description_dict[wind_rose_direction]
-    print(wind_speed_description)
     return ", ".join([wind_speed_description, str(wind_speed)+" m/s", wind_rose_description])
 
 def cloudiness_description(cloud_cover_percentage):
@@ -155,3 +151,10 @@ def cloudiness_description(cloud_cover_percentage):
     if cloud_cover_percentage != 0 and cloudiness_okta_table[pos][0] == cloud_cover_percentage:
         pos+=1
     return cloudiness_okta_description[pos]
+
+def now_date_format():
+    now_date = datetime.datetime.utcnow()
+    return now_date.strftime("%Y-%d-%m %H:%M:%S")
+
+def key_cache_hash(key_prefix):
+    return hashlib.md5(key_prefix.encode('utf-8')).hexdigest()
