@@ -15,6 +15,7 @@ def api_call_openweathermap(city, country):
     Response object
         The response of the openweathermap api called
     """
+
     api_key_openweather = '21056e88589f13ccd2c21c8f9acbba8e'
     lang = 'en'
     units_system = 'metric'
@@ -39,23 +40,25 @@ def api_weather_response(openweathermap_res):
     openmapweathermap_res : dict
         A deserialized json into a python dictionary object that 
         contains the response from the get call at openweathermap api
+        given a city and a country
 
     Returns
     -------
     Response type object
         The response of the openweathermap api called
     """
-    location_name = f"{openweathermap_res['name']}, {openweathermap_res['sys']['country']}"
-    temperature_fahrenheit = f"{celsius_to_fahrenheit(openweathermap_res['main']['temp']):.2f} °F"
-    temperature_celsius = f"{openweathermap_res['main']['temp']} °C"
-    wind = wind_description(openweathermap_res['wind']['speed'], openweathermap_res["wind"]["deg"])
-    cloudiness = cloudiness_description(openweathermap_res["clouds"]["all"])
-    pressure = f"{openweathermap_res['main']['pressure']} hpa"
-    humidity = f"{openweathermap_res['main']['humidity']} %"
-    sunrise =  unix_time_to_datetime_format(openweathermap_res["sys"]["sunrise"], "%H:%M")
-    sunset = unix_time_to_datetime_format(openweathermap_res["sys"]["sunset"], "%H:%M")
-    geo_coordinates = f"[{openweathermap_res['coord']['lat']}, {openweathermap_res['coord']['lon']}]"
-    forecast =  "N/A"
+
+    location_name = f"""{get_dict(openweathermap_res, ['name'])}, {get_dict(openweathermap_res, ['sys', 'country'])}"""
+    temperature_fahrenheit = f"""{celsius_to_fahrenheit(get_dict(openweathermap_res, ['main', 'temp'])):.2f} °F"""
+    temperature_celsius = f"""{get_dict(openweathermap_res, ['main', 'temp']):.3f} °C"""
+    wind = wind_description(get_dict(openweathermap_res, ['wind', 'speed']), get_dict(openweathermap_res, ['wind', 'deg']))
+    cloudiness = cloudiness_description(get_dict(openweathermap_res, ['clouds', 'all']))
+    pressure = f"{get_dict(openweathermap_res, ['main', 'pressure'])} hpa"
+    humidity = f"{get_dict(openweathermap_res, ['main', 'humidity'])} %"
+    sunrise = unix_time_to_datetime_format(get_dict(openweathermap_res, ['sys', 'sunrise']), '%H:%M')
+    sunset = unix_time_to_datetime_format(get_dict(openweathermap_res, ['sys', 'sunset']), '%H:%M')
+    geo_coordinates = f"""[{get_dict(openweathermap_res, ['coord', 'lat'])}, {get_dict(openweathermap_res, ['coord', 'lon'])}]"""
+    forecast =  get_dict(openweathermap_res, ['forecast'])
     response_data = {
         "location_name": location_name,
         "temperature_fahrenheit": temperature_fahrenheit,
@@ -85,6 +88,7 @@ def unix_time_to_datetime_format(utc_time, date_format):
     str
         A human readable string of a date
     """
+
     dt_utc_tz = datetime.datetime.fromtimestamp(utc_time, datetime.timezone.utc)
     return dt_utc_tz.strftime(date_format)
 
@@ -263,3 +267,31 @@ def key_cache_hash(key_prefix):
     """
 
     return hashlib.md5(key_prefix.encode('utf-8')).hexdigest()
+
+def get_dict(a_dict ,list_attributes, default_value='N/A'):
+    """Nested getter of a dictionary with default value
+
+    Parameters
+    ----------
+    a_dict : dict
+        A dictionary
+    list_attributes: list(str)
+        A list of nested keys to search on a dictionary
+    default_value: str
+        The default value in case of AttributeError
+
+    Returns
+    -------
+    Object
+        The result value of the dictionary after nested lookups
+    """
+
+    my_value= None
+    for attr in list_attributes:
+        my_value = a_dict.get(attr , {})
+        # No issues with this because python
+        # uses pass by asignment strategy
+        a_dict = my_value
+    if my_value == {}:
+        my_value = default_value
+    return my_value

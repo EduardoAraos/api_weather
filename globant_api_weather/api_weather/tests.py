@@ -6,8 +6,8 @@ class TestKey_cache_hash(unittest.TestCase):
     def test_collisions_amount(self):
         """
         Test that the number of collisions is zero,
-        comparing the list of cities to the same list
-        but hashed with md5
+        comparing the lenth of list of cities to 
+        the same list but hashed with md5
         """
         hash_set = set()
         with open("static/city_country_list.json") as f:
