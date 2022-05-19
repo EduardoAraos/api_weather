@@ -208,6 +208,7 @@ def cloudiness_description(cloud_cover_percentage):
     num
         A human readable description of hows the sky is cover by clouds
     """
+
     cloudiness_okta_table = [
         (0, 0),
         (18.75, 1),
@@ -243,6 +244,7 @@ def now_date_format():
     str
         The date of the moment the function is called (E.g. 2022-01-18 22:05:59)
     """
+
     now_date = datetime.datetime.utcnow()
     return now_date.strftime("%Y-%d-%m %H:%M:%S")
 
@@ -252,11 +254,12 @@ def key_cache_hash(key_prefix):
     Parameters
     ----------
     key_prefix : str
-        A string
+        A string in the form "Bogota,CO"
 
     Returns
     -------
     str
         A string hashed into a md5 value
     """
+
     return hashlib.md5(key_prefix.encode('utf-8')).hexdigest()
