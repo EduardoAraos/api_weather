@@ -21,7 +21,7 @@ $ sudo docker-compose build # sudo is not required if docker is well configured 
 
 * Run the application
 ```
-$ sudo docker-compose up # make sure port 8000 before running the app
+$ sudo docker-compose up # make sure port 8000 is not used before running the app
 ```
 ```
 ...
