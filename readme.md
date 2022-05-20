@@ -139,12 +139,12 @@ The list of the city (<http://bulk.openweathermap.org/sample/>) id for all pairs
 theres around 170.000 pairs of unique city & country, there could be many reasons for this behavior, for example every country administrates its own territory organization, for example in the United States they have states and here in Chile we have communes,
 this lack of standard could lead to the inconsistent dataset. 
 
-Anyway, dont let this discourage you,the endpoint works just fine with the most well 
-known cities of the world, and pretty much all cities of Argentina.
+Anyway, dont let this discourage you,the endpoint works just fine with almost all
+cities of the world, and pretty much all cities of Argentina.
 
 **2.5** Due to the lack of standards mentioned above, the caching strategy sees the pair Córdoba,AR =/= Cordoba,AR and has to cache both options separately. 
 
-**3.** Normally when operating a production level application (independent of its framework i.e.: Django, rails, Spring, ExpressJs, etc)
+**3.** Normally when operating at production level application (independent of its framework i.e.: Django, rails, Spring, ExpressJs, etc)
 the environment variables and secrets are securely stored (cryptographically speaking) under a cloud provider of the resource, or at least not shared via the github public repository. 
 
 In this case there are two potential sensitive variables stored in this project:
