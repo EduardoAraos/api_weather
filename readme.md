@@ -164,6 +164,7 @@ that the third app provider give us to make requests, given that there is no sen
 - [ ] It could be useful to pass timezone as a parameter into the GET /weather API endpoint so the datetimes.
 	  in the response are aware of the timezone, actually all datetimes are in UTC timezone.
 - [ ] Forecast for a weekly basis or atleast various days is not available on the third api requested, investigate for options.
+- [ ] Debug = False 
 
 
 ### Done ✓
