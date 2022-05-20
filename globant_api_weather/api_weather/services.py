@@ -95,8 +95,8 @@ def api_weather_response(openweathermap_res):
     forecast = {
         'temp_min_fahrenheit': f"{celsius_to_fahrenheit(temp_min_celsius):.2f} °F",
         'temp_max_fahrenheit': f"{celsius_to_fahrenheit(temp_max_celsius):.2f} °F",
-        'temp_min_celsius': f"{temp_min_celsius:.2f}",
-        'temp_max_celsius': f"{temp_max_celsius:.2f}",
+        'temp_min_celsius': f"{temp_min_celsius:.2f} °C",
+        'temp_max_celsius': f"{temp_max_celsius:.2f} °C",
 
     }
     # The response object built
