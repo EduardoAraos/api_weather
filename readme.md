@@ -152,7 +152,7 @@ DJANGO_SECRET and API_KEY_OPW, the first one it is used to sign hash functions o
 that the third app provider give us to make requests, given that there is no sensitive data in the application & the api key is totally free
 & we are not delivering an application for production, we can afford to share this variables to the world at the moment.
 
-**TL;DR some shortcuts were taken due to the nature of the endpoint, these shortcuts, however cant make it to production level**
+**TL;DR some shortcuts were taken due to the nature of the endpoint, these shortcuts, however, cant make it to production level**
 
 ### Todo:
 - [ ] Custom validators for the serializers using regular expressions that matches the output data for each value of the response of the GET /weather API.
