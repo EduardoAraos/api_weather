@@ -18,6 +18,8 @@ $ sudo docker-compose build # sudo is not required if docker is well configured 
 * Run the application
 ```
 $ sudo docker-compose up # make sure port 8000 before running the app
+```
+```
 ...
 globant_weather_api_1  | Starting development server at http://0.0.0.0:8000/
 ...
@@ -25,6 +27,8 @@ globant_weather_api_1  | Starting development server at http://0.0.0.0:8000/
 * Run the tests set
 ```
 $ sudo docker-compose run globant_weather_api sh -c "python manage.py test"
+```
+```
 Creating globant_api_weather_globant_weather_api_run ... done
 Found 46 test(s).
 System check identified no issues (0 silenced).
@@ -37,7 +41,8 @@ OK
 * Try the api!
 ```
 http http://0.0.0.0:8000/weather city=="San Miguel de tucuman" country==AR # you could use curl, postman, etc.
-
+```
+```
 HTTP/1.1 200 OK
 Allow: OPTIONS, GET
 Content-Length: 357
@@ -76,6 +81,8 @@ X-Frame-Options: DENY
 
 ```
 $ http http://0.0.0.0:8000/weather city==Bogota country==CO
+```
+```
 ...
 HTTP/1.1 200 OK
 Content-Type: application/json
