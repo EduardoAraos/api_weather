@@ -87,9 +87,9 @@ X-Frame-Options: DENY
 
 **Local endpoint:** `http://0.0.0.0:8000`
 
-| Path         | Description  | Parameters
-| ------------ | ------------ | ----------
-| `/weather`   | Returns an object with current weather data | `?city=Santiago&?Country=CL`
+| Path         |Method	|Description  | Parameters
+| ------------ |--------|------------ | ----------
+| `/weather`   | GET	|Returns an object with current weather data | `?city=Santiago&?Country=CL`
 
 ```
 $ http http://0.0.0.0:8000/weather city==Bogota country==CO
