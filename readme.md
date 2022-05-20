@@ -1,7 +1,11 @@
 # API Weather
 
 Api weather is an api that delivers the current weather given a city and a country, including data such as humidity, pressure, temperature, cloudiness, windness, etc.
-## Installation
+### Prerequisites
+*git
+*docker
+*docker-compose
+## Quick install
 
 * Clone the repository
 
@@ -125,7 +129,7 @@ to make migrations and migrate them (no use of Django ORM atm).
 the city and its country for which we are consulting its weather, well, they are not, in fact the documentation for the
 third app <https://openweathermap.org/current#cityid> , tell us that to get unambigous data you should use city id.
 
-The list of the city id for all pairs of cities & countries have around 200.000 pairs, after some data cleaning
+The list of the city (<http://bulk.openweathermap.org/sample/>) id for all pairs of cities & countries have around 200.000 pairs, after some data cleaning
 theres around 170.000 pairs of unique city & country, there could be many reasons for this behavior, for example every country administrates its own territory organization, for example in the United States they have states and here in Chile we have communes,
 this lack of standard could lead to the inconsistent dataset. 
 
@@ -146,19 +150,19 @@ that the third app provider give us to make requests, given that there is no sen
 
 ### Todo:
 - [ ] Custom validators for the serializers using regular expressions that matches the output data for each value of the response of the GET /weather API.
-- [ ] High level documentation interface like swagger, corepi.
+- [ ] High level documentation interface like Swagger & CORE APi.
 - [ ] Factorize the unit tests.
 - [ ] Integration tests using mocks.
 - [ ] Standard schema for 400 level status code responses of the GET /weather API.
 - [ ] Decouple some functionalities to encapsulate better some behaviors, especially the ones that make it difficult to meet the PEP8 standard of lines limited to 79 characters.
 - [ ] It could be useful to pass timezone as a parameter into the GET /weather API endpoint so the datetimes.
 	  in the response are aware of the timezone, actually all datetimes are in UTC timezone.
-- [ ] Forecast for a weekly basis or atleast various days is not available on the third api requesteds, investigate for options.
+- [ ] Forecast for a weekly basis or atleast various days is not available on the third api requested, investigate for options.
 
 
 ### Done ✓
 
-- [x] Create readme.md of the project with start up instructions, notes and consiredations of the development and a todo list.
+- [x] Create readme.md of the project with start up instructions, notes and considerations of the development and a todo list.
 - [x] Development of the application on a public repository on a git based version system.
 - [x] Create GET /weather endpoint that takes city and country as parameters.
 - [x] Fully build the response object required (except for forecast key).
