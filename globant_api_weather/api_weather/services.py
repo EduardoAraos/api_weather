@@ -56,12 +56,16 @@ def api_weather_response(openweathermap_res):
     """
 
     # Building each key of our response object, using the third app called
+    # location_name: city,Country
     location_name = (f"""{get_dict(openweathermap_res, ['name'])},"""
                      f"""{get_dict(openweathermap_res, ['sys', 'country'])}""")
+    # temperature_fahrenheit: current temperature in fahrenheit units
     temperature_fahrenheit = (
         f"""{celsius_to_fahrenheit(get_dict(openweathermap_res, ['main', 'temp'])):.2f} °F""")
+    # temperature_celsius:  current temperature in celsius units
     temperature_celsius = (
         f"""{get_dict(openweathermap_res, ['main', 'temp']):.2f} °C""")
+    # wind: human readable description of windness
     wind_tuple = wind_description(
         get_dict(
             openweathermap_res, [
@@ -70,17 +74,31 @@ def api_weather_response(openweathermap_res):
                 'wind', 'deg']))
     wind = ', '.join(
         [wind_tuple[0], str(wind_tuple[1]) + ' m/s', wind_tuple[2]])
+    # cloud: human readable description of cloud cover
     cloudiness = cloudiness_description(
         get_dict(openweathermap_res, ['clouds', 'all']))
     pressure = f"{get_dict(openweathermap_res, ['main', 'pressure'])} hpa"
+    # humidity: in [hpa] units
     humidity = f"{get_dict(openweathermap_res, ['main', 'humidity'])} %"
+    # sunrise: hour in UTC timezone
     sunrise = unix_time_to_datetime_format(
         get_dict(openweathermap_res, ['sys', 'sunrise']), '%H:%M')
+    # sunset: hour in UTC timezone
     sunset = unix_time_to_datetime_format(
         get_dict(openweathermap_res, ['sys', 'sunset']), '%H:%M')
+    #geo_coordinates: [lat, lon]
     geo_coordinates = (
         f"""[{get_dict(openweathermap_res, ['coord', 'lat'])}, {get_dict(openweathermap_res, ['coord', 'lon'])}]""")
-    forecast = get_dict(openweathermap_res, ['forecast'])
+    # forecast
+    temp_min_celsius = get_dict(openweathermap_res, ['main', 'temp_min'])
+    temp_max_celsius = get_dict(openweathermap_res, ['main', 'temp_max'])
+    forecast = {
+        'temp_min_fahrenheit': f"{celsius_to_fahrenheit(temp_min_celsius):.2f} °F",
+        'temp_max_fahrenheit': f"{celsius_to_fahrenheit(temp_max_celsius):.2f} °F",
+        'temp_min_celsius': f"{temp_min_celsius:.2f}",
+        'temp_max_celsius': f"{temp_max_celsius:.2f}",
+
+    }
     # The response object built
     response_data = {
         'location_name': location_name,

@@ -46,4 +46,4 @@ class ApiWeatherGlobantSerializer(serializers.Serializer):
     # Datetime "2018-01-09 11:57:00"
     requested_time = serializers.CharField()
     # Ver que poner
-    forecast = serializers.CharField()
+    forecast = serializers.DictField()
