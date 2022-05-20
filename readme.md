@@ -100,19 +100,25 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 ...
 {
-    "cloudiness": "Broken",
-    "forecast": "N/A",
+    "cloudiness": "Scattered",
+    "forecast": {
+        "temp_max_celsius": "11.73 °C",
+        "temp_max_fahrenheit": "53.11 °F",
+        "temp_min_celsius": "11.73 °C",
+        "temp_min_fahrenheit": "53.11 °F"
+    },
     "geo_coordinates": "[4.6097, -74.0817]",
     "humidity": "87 %",
     "location_name": "Bogota,CO",
-    "pressure": "1027 hpa",
-    "requested_time": "2022-20-05 09:17:46",
+    "pressure": "1029 hpa",
+    "requested_time": "2022-20-05 12:11:58",
     "sunrise": "10:42",
     "sunset": "23:03",
-    "temperature_celsius": "10.73 °C",
-    "temperature_fahrenheit": "51.31 °F",
-    "wind": "Light breeze, 3.09 m/s, East-NorthEast"
+    "temperature_celsius": "11.73 °C",
+    "temperature_fahrenheit": "53.11 °F",
+    "wind": "Light breeze, 2.57 m/s, North-NorthEast"
 }
+
 ```
 
 ### Notes & general developer considerations
