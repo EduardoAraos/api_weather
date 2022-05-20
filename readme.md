@@ -144,7 +144,7 @@ cities of the world, and pretty much all cities of Argentina.
 
 **2.5** Due to the lack of standards mentioned above, the caching strategy sees the pair Córdoba,AR =/= Cordoba,AR and has to cache both options separately. 
 
-**3.** Normally when operating an application (independent of its framework i.e.: Django, rails, Spring, ExpressJs, etc) at production release
+**3.** Normally when operating an application (independent of its framework i.e.: Django, rails, Spring, ExpressJs, etc) at production release,
 the environment variables and secrets are securely stored (cryptographically speaking) under a cloud provider of the resource, or at least not shared via the github public repository. 
 
 In this case there are two potential sensitive variables stored in this project:
