@@ -12,7 +12,7 @@ $ cd globant_api_weather/ # move to the root src
 
 * Create the image for our container
 ```
-$ sudo docker-compose build # sudo is not required if docker is well configured on the machine
+$ sudo docker-compose build # sudo is not required if docker is well configured on the local machine
 ```
 
 * Run the application
@@ -45,10 +45,10 @@ http http://0.0.0.0:8000/weather city=="San Miguel de tucuman" country==AR # you
 ```
 HTTP/1.1 200 OK
 Allow: OPTIONS, GET
-Content-Length: 357
+Content-Length: 486
 Content-Type: application/json
 Cross-Origin-Opener-Policy: same-origin
-Date: Fri, 20 May 2022 10:00:34 GMT
+Date: Fri, 20 May 2022 10:43:05 GMT
 Referrer-Policy: same-origin
 Server: WSGIServer/0.2 CPython/3.8.10
 Vary: Cookie
@@ -56,20 +56,24 @@ X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 
 {
-    "cloudiness": "Few clouds",
-    "forecast": "N/A",
+    "cloudiness": "Sky clear",
+    "forecast": {
+        "temp_max_celsius": "7.00 °C",
+        "temp_max_fahrenheit": "44.60 °F",
+        "temp_min_celsius": "7.00 °C",
+        "temp_min_fahrenheit": "44.60 °F"
+    },
     "geo_coordinates": "[-26.8241, -65.2226]",
-    "humidity": "80 %",
+    "humidity": "87 %",
     "location_name": "San Miguel de Tucumán,AR",
-    "pressure": "1015 hpa",
-    "requested_time": "2022-20-05 10:00:33",
+    "pressure": "1014 hpa",
+    "requested_time": "2022-20-05 10:43:05",
     "sunrise": "10:55",
     "sunset": "21:39",
-    "temperature_celsius": "8.20 °C",
-    "temperature_fahrenheit": "46.76 °F",
-    "wind": "Light air, 1.2 m/s, West-NorthWest"
+    "temperature_celsius": "7.00 °C",
+    "temperature_fahrenheit": "44.60 °F",
+    "wind": "Gentle breeze, 4.12 m/s, North-NorthWest"
 }
-
 ```
 
 
@@ -77,7 +81,11 @@ X-Frame-Options: DENY
 
 ## Usage
 
+**Local endpoint:** `http://0.0.0.0:8000`
 
+| Path         | Description  | Parameters
+| ------------ | ------------ | ----------
+| `/weather`   | Returns an object with current weather data | `?city=Santiago&?Country=CL`
 
 ```
 $ http http://0.0.0.0:8000/weather city==Bogota country==CO
