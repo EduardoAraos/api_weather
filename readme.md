@@ -113,6 +113,7 @@ Content-Type: application/json
 
 ### Notes & general developer considerations
 
+
 **1.** Usually when managing a django application you have to make migrations and migrate them
 (create SQL sentences that translate your models from your applications into the database thats configurated).
 
@@ -140,6 +141,8 @@ In this case there are two potential sensitive variables stored in this project:
 DJANGO_SECRET and API_KEY_OPW, the first one it is used to sign hash functions on python (for example the key for the cache uses md5 hashing) and the second one is the api key
 that the third app provider give us to make requests, given that there is no sensitive data in the application & the api key is totally free
 & we are not delivering an application for production, we can afford to share this variables to the world at the moment.
+
+**TL;DR some shortcuts were taken due to the nature of the endpoint, these shortcuts, anyway cant make it to production level**
 
 ### Todo:
 - [ ] Custom validators for the serializers using regular expressions that matches the output data for each value of the response of the GET /weather API.
