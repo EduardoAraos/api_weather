@@ -2,9 +2,9 @@
 
 Api weather is an api that delivers the current weather given a city and a country, including data such as humidity, pressure, temperature, cloudiness, windness, etc.
 ### Prerequisites
-*git
-*docker
-*docker-compose
+- git
+- docker
+- docker-compose
 ## Quick install
 
 * Clone the repository
