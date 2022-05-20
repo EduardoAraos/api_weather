@@ -1,6 +1,4 @@
 from rest_framework import serializers
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
 
 
 class CityCountrySerializer(serializers.Serializer):

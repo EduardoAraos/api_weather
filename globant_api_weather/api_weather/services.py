@@ -3,6 +3,7 @@ import datetime
 import bisect
 import hashlib
 import math
+import os
 
 
 def api_call_openweathermap(city, country):
@@ -11,9 +12,10 @@ def api_call_openweathermap(city, country):
     Parameters
     ----------
     city : Str
-        The speed of wind
+        The name of a city
     country: Str
-        The
+        A two characters iso 3661 country code
+        that identifies a country
 
     Returns
     -------
@@ -21,7 +23,7 @@ def api_call_openweathermap(city, country):
         The response of the openweathermap api called
     """
 
-    api_key_openweather = '21056e88589f13ccd2c21c8f9acbba8e'
+    api_key_openweather = os.environ['API_KEY_OPW']
     lang = 'en'
     units_system = 'metric'
     params = {}
