@@ -150,7 +150,7 @@ that the third app provider give us to make requests, given that there is no sen
 
 ### Todo:
 - [ ] Custom validators for the serializers using regular expressions that matches the output data for each value of the response of the GET /weather API.
-- [ ] High level documentation interface like Swagger & CORE Api.
+- [ ] High level documentation interface like Swagger & Core Api.
 - [ ] Factorize the unit tests.
 - [ ] Integration tests using mocks.
 - [ ] Standard schema for 400 level status code responses of the GET /weather API.
