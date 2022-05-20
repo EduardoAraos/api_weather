@@ -2,7 +2,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from api_weather.serializers import CityCountrySerializer, ApiWeatherGlobantSerializer
-from api_weather.services import api_call_openweathermap, api_weather_response, now_date_format, key_cache_hash
+from api_weather.services import (api_call_openweathermap,
+    api_weather_response, now_date_format, key_cache_hash)
 from django.core.cache import cache
 
 @api_view(['GET'])
