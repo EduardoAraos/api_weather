@@ -6,7 +6,7 @@ Api weather is an api that delivers the current weather given a city and a count
 * Clone the repository
 
 ```
-$ https://github.com/EduardoAraos/api_weather.git 
+$ git clone https://github.com/EduardoAraos/api_weather.git 
 $ cd globant_api_weather/ # move to the root src
 ```
 
