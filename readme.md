@@ -89,7 +89,7 @@ X-Frame-Options: DENY
 
 | Path         |Method	|Description  | Parameters
 | ------------ |--------|------------ | ----------
-| `/weather`   | GET	|Returns an object with current weather data | `?city={City name}&?Country={ISO 3166 Country code}`
+| `/weather`   | GET	|Returns an object with current weather data | `?city={city name}&?country={ISO-3166 country code}`
 
 ```
 $ http http://0.0.0.0:8000/weather city==Bogota country==CO
