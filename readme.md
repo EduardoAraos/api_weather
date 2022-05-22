@@ -161,7 +161,7 @@ that the third app provider give us to make requests, given that there is no sen
 - [ ] Integration tests using mocks.
 - [ ] Standard schema for 400 level status code responses of the GET /weather API.
 - [ ] Decouple some functionalities to encapsulate better some behaviors, especially the ones that make it difficult to meet the PEP8 standard of lines limited to 79 characters.
-- [ ] It could be useful to pass timezone as a parameter into the GET /weather API endpoint so the datetimes.
+- [ ] It could be useful to pass timezone as a parameter into the GET /weather API endpoint so the datetimes 
 	  in the response are aware of the timezone, actually all datetimes are in UTC timezone.
 - [ ] Forecast for a weekly basis or atleast various days is not available on the third api requested, investigate for options.
 - [ ] Debug = False 
