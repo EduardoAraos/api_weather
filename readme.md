@@ -135,7 +135,7 @@ to make migrations and migrate them (no use of Django ORM atm).
 the city and its country for which we are consulting its weather, well, they are not, in fact the documentation for the
 third app <https://openweathermap.org/current#cityid> , tell us that to get unambigous data you should use city id.
 
-The list of the city (<http://bulk.openweathermap.org/sample/>) id for all pairs of cities & countries have around 200.000 pairs, after some data cleaning
+The list of the city id's (<http://bulk.openweathermap.org/sample/>) for all pairs of cities & countries have around 200.000 pairs, after some data cleaning
 theres around 170.000 pairs of unique city & country, there could be many reasons for this behavior, for example every country administrates its own territory organization, for example in the United States they have states and here in Chile we have communes,
 this lack of standard could lead to the inconsistent dataset. 
 
